@@ -17,10 +17,10 @@ public class SystemConfigs {
     private int maxTicketCapacity;
 
     @JsonProperty("system_status")
-    private int systemStatus;
+    private boolean systemStatus;
 
     @JsonProperty("cli_status")
-    private int cliStatus;
+    private boolean cliStatus;
 
 
     public int getTotalTickets() {
@@ -55,19 +55,19 @@ public class SystemConfigs {
         this.maxTicketCapacity = maxTicketCapacity;
     }
 
-    public int getSystemStatus() {
-        return systemStatus;
-    }
-
-    public void setSystemStatus(int systemStatus) {
-        this.systemStatus = systemStatus;
-    }
-
-    public int getCliStatus() {
+    public boolean isCliStatus() {
         return cliStatus;
     }
 
-    public void setCliStatus(int cliStatus) {
+    public void setCliStatus(boolean cliStatus) {
         this.cliStatus = cliStatus;
+    }
+
+    public boolean isSystemStatus() {
+        return systemStatus;
+    }
+
+    public void setSystemStatus(boolean systemStatus) {
+        this.systemStatus = systemStatus;
     }
 }

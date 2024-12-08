@@ -1,25 +1,32 @@
 {
-  "system_configs": {
-    "total_tickets": 0,
-    "ticket_release_rate": 0,
-    "customer_retrieval_rate": 0,
-    "max_ticket_capacity": 0,
-    "system_status": 0,
-    "cli_status": 0
+  "system_configs" : {
+    "total_tickets" : 100,
+    "ticket_release_rate" : 0,
+    "customer_retrieval_rate" : 0,
+    "max_ticket_capacity" : 500,
+    "system_status" : true,
+    "cli_status" : false
   },
-
-  "sales_logs": [
-    {
-      "log": "Buy 1 ticket from ticket pool [ID - 24] VIP Customer",
-      "date_time": "21:39:01 - 20/11/2024"
-    },
-    {
-      "log": "Buy 1 ticket from ticket pool [ID - 24] VIP Customer",
-      "date_time": "21:39:01 - 20/11/2024"
-    },
-    {
-      "log": "Buy 1 ticket from ticket pool [ID - 24] VIP Customer",
-      "date_time": "21:39:01 - 20/11/2024"
-    }
-  ]
+  "sales_logs" : [ {
+    "log" : "Buy 1 ticket from ticket pool [ID - 24] VIP Customer",
+    "date_time" : "21:39:01 - 20/11/2024"
+  }, {
+    "log" : "Buy 1 ticket from ticket pool [ID - 24] VIP Customer",
+    "date_time" : "21:39:01 - 20/11/2024"
+  }, {
+    "log" : "Buy 1 ticket from ticket pool [ID - 24] VIP Customer",
+    "date_time" : "21:39:01 - 20/11/2024"
+  }, {
+    "log" : "Added a new log",
+    "date_time" : "22:00:00 - 08/12/2024"
+  }, {
+    "log" : "Added a new log",
+    "date_time" : "22:00:00 - 08/12/2024"
+  }, {
+    "log" : "Added a new log",
+    "date_time" : "22:00:00 - 08/12/2024"
+  }, {
+    "log" : "Added a new log ----------------------",
+    "date_time" : "22:00:00 - 08/12/2024"
+  } ]
 }
