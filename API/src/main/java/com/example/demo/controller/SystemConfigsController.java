@@ -3,13 +3,9 @@ package com.example.demo.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
-import java.util.List;
 import java.util.Map;
 
 
@@ -24,26 +20,47 @@ public class SystemConfigsController {
         this.messagingTemplate = messagingTemplate;
     }
 
-    // Fetch sales_logs from save_data_file.json
+    // Endpoint to fetch the current system_configs
     @GetMapping("/")
-    public List<Map<String, String>> getSalesLogs(@RequestParam int page, @RequestParam int size) throws Exception {
+    public Map<String, Object> getSystemConfigs() throws Exception {
         Map<String, Object> data = objectMapper.readValue(file, Map.class);
-        List<Map<String, String>> salesLogs = (List<Map<String, String>>) data.get("sales_logs");
-
-        int start = Math.min(page * size, salesLogs.size());
-        int end = Math.min(start + size, salesLogs.size());
-
-        return salesLogs.subList(start, end);
+        return (Map<String, Object>) data.get("system_configs");
     }
 
-    // Broadcast sales_logs via WebSocket
-    @Scheduled(fixedRate = 1000) // Send updates every 5 seconds
-    public void broadcastSalesLogs() throws Exception {
+    // Broadcast system_configs updates via WebSocket
+    @Scheduled(fixedRate = 1000) // Send updates every 1 seconds
+    public void broadcastSystemConfigs() throws Exception {
         Map<String, Object> data = objectMapper.readValue(file, Map.class);
-        List<Map<String, String>> salesLogs = (List<Map<String, String>>) data.get("sales_logs");
+        Map<String, Object> systemConfigs = (Map<String, Object>) data.get("system_configs");
 
-        if (!salesLogs.isEmpty()) {
-            messagingTemplate.convertAndSend("/topic/salesLogs", salesLogs);
+        if (systemConfigs != null) {
+            messagingTemplate.convertAndSend("/topic/systemConfigs", systemConfigs);
         }
+    }
+
+    @PatchMapping("/update")
+    public void updateSystemConfigs(@RequestBody Map<String, Object> updates) throws Exception {
+        // Read the existing JSON file
+        Map<String, Object> data = objectMapper.readValue(file, Map.class);
+
+        // Get the current system_configs
+        Map<String, Object> systemConfigs = (Map<String, Object>) data.get("system_configs");
+
+        // Update only the allowed keys
+        if (updates.containsKey("total_tickets")) {
+            systemConfigs.put("total_tickets", updates.get("total_tickets"));
+        }
+        if (updates.containsKey("ticket_release_rate")) {
+            systemConfigs.put("ticket_release_rate", updates.get("ticket_release_rate"));
+        }
+        if (updates.containsKey("customer_retrieval_rate")) {
+            systemConfigs.put("customer_retrieval_rate", updates.get("customer_retrieval_rate"));
+        }
+        if (updates.containsKey("max_ticket_capacity")) {
+            systemConfigs.put("max_ticket_capacity", updates.get("max_ticket_capacity"));
+        }
+
+        // Save the updated data back to the JSON file
+        objectMapper.writeValue(file, data);
     }
 }
