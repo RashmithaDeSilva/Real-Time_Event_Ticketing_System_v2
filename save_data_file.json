@@ -1,32 +1,116 @@
 {
   "system_configs" : {
-    "total_tickets" : 100,
-    "ticket_release_rate" : 0,
-    "customer_retrieval_rate" : 0,
+    "total_tickets" : 57,
+    "ticket_release_rate" : 5000,
+    "customer_retrieval_rate" : 10000,
     "max_ticket_capacity" : 500,
-    "system_status" : true,
+    "system_status" : false,
     "cli_status" : false
   },
   "sales_logs" : [ {
-    "log" : "Buy 1 ticket from ticket pool [ID - 24] VIP Customer",
-    "date_time" : "21:39:01 - 20/11/2024"
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "20:53:10 - 09/12/2024"
   }, {
-    "log" : "Buy 1 ticket from ticket pool [ID - 24] VIP Customer",
-    "date_time" : "21:39:01 - 20/11/2024"
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:53:12 - 09/12/2024"
   }, {
-    "log" : "Buy 1 ticket from ticket pool [ID - 24] VIP Customer",
-    "date_time" : "21:39:01 - 20/11/2024"
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "20:53:15 - 09/12/2024"
   }, {
-    "log" : "Added a new log",
-    "date_time" : "22:00:00 - 08/12/2024"
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:53:16 - 09/12/2024"
   }, {
-    "log" : "Added a new log",
-    "date_time" : "22:00:00 - 08/12/2024"
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "20:53:20 - 09/12/2024"
   }, {
-    "log" : "Added a new log",
-    "date_time" : "22:00:00 - 08/12/2024"
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:53:20 - 09/12/2024"
   }, {
-    "log" : "Added a new log ----------------------",
-    "date_time" : "22:00:00 - 08/12/2024"
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "20:53:25 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:53:26 - 09/12/2024"
+  }, {
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "20:53:30 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:53:30 - 09/12/2024"
+  }, {
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "20:53:35 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:53:36 - 09/12/2024"
+  }, {
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "20:53:40 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:53:40 - 09/12/2024"
+  }, {
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "20:53:45 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:53:47 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:54:33 - 09/12/2024"
+  }, {
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "20:54:33 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:54:35 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:54:37 - 09/12/2024"
+  }, {
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "20:54:38 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "20:54:39 - 09/12/2024"
+  }, {
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "21:01:08 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "21:01:08 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "21:01:10 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "21:01:12 - 09/12/2024"
+  }, {
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "21:01:13 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "21:01:14 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "21:01:16 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "21:01:18 - 09/12/2024"
+  }, {
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "21:01:18 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "21:01:20 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "21:01:22 - 09/12/2024"
+  }, {
+    "log" : "Customer bought ticket from ticket pool",
+    "date_time" : "21:01:23 - 09/12/2024"
+  }, {
+    "log" : "Vendor add 1 ticket into ticket pool",
+    "date_time" : "21:01:24 - 09/12/2024"
   } ]
 }

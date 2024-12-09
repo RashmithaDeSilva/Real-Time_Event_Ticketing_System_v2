@@ -1,5 +1,10 @@
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import enums.SystemConfigTypes;
+import models.Customer;
+import models.TicketPool;
+import models.Vendor;
 import models.fileOps.Config;
 import models.fileOps.SalesLog;
 import util.GetInput;
@@ -24,7 +29,7 @@ public class Main {
             Config config = objectMapper.readValue(file, Config.class);
 
             // Update CLI status
-            config.getSystemConfigs().setSystemStatus(true);
+            config.getSystemConfigs().setCliStatus(true);
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, config);
 
             // Load current data
@@ -47,14 +52,65 @@ public class Main {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, config);
 
             // Start system
-            
+            boolean loopBreak = false;
+            while (!loopBreak) {
+                String userInput = new GetInput().getStr("Do you need to start System (y/n): ");
+                if (userInput.equalsIgnoreCase("y")) {
+                    loopBreak = true;
 
-            // Write updated data back to file
-//            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, config);
-//            System.out.println("Data successfully saved to the file!");
+                } else if (userInput.equalsIgnoreCase("n")) {
+                    config.getSystemConfigs().setCliStatus(false);
+                    objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, config);
+                    System.exit(0);
+                }
+            }
+
+            config.getSystemConfigs().setSystemStatus(true);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, config);
+
+            TicketPool ticketPool = new TicketPool(objectMapper, file, config);
+            Vendor vendor = new Vendor(ticketPool, config);
+            Customer customer = new Customer(ticketPool, config);
+
+            Thread vendorThread = new Thread(vendor);
+            Thread customerThread = new Thread(customer);
+
+            vendorThread.start();
+            customerThread.start();
+
+            // Add a shutdown hook to handle thread termination
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                System.out.println("Shutdown initiated. Stopping threads...");
+                vendor.stop(); // Signal the vendor thread to stop
+                customer.stop(); // Signal the customer thread to stop
+
+                try {
+                    vendorThread.join(); // Wait for the thread to finish
+                    customerThread.join(); // Wait for the thread to finish
+
+                    // update system and CLI status
+                    config.getSystemConfigs().setSystemStatus(false);
+                    config.getSystemConfigs().setCliStatus(false);
+                    objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, config);
+
+                } catch (InterruptedException | IOException e) {
+                    System.err.println("Error during shutdown: " + e.getMessage());
+                }
+
+                System.out.println("All threads have been stopped. Goodbye!");
+            }));
+
+            // Keep the main program running indefinitely
+            while (true) {
+                try {
+                    Thread.sleep(1000); // Simulate the main program work
+                } catch (InterruptedException e) {
+                    System.out.println("Main thread interrupted: " + e.getMessage());
+                }
+            }
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println("Error initializing system: " + e.getMessage());
         }
 
     }
@@ -66,8 +122,8 @@ public class Main {
         // Java 17+ switch that directory return the value
         String config = switch (type) {
             case TOTAL_TICKETS -> "Total Tickets";
-            case TICKET_RELEASE_RATE -> "Ticket Release Rate";
-            case CUSTOMER_RETRIEVAL_RATE -> "Customer Retrieval Rate";
+            case TICKET_RELEASE_RATE -> "Ticket Release Rate (ms)";
+            case CUSTOMER_RETRIEVAL_RATE -> "Customer Retrieval Rate (ms)";
             case MAX_TICKET_CAPACITY -> "Max Ticket Capacity";
         };
 

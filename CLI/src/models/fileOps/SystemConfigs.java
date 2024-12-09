@@ -70,4 +70,12 @@ public class SystemConfigs {
     public void setSystemStatus(boolean systemStatus) {
         this.systemStatus = systemStatus;
     }
+
+    public void addTickets(int count) {
+        this.totalTickets += count;
+    }
+
+    public void removeTickets(int count) {
+        this.totalTickets -= count;
+    }
 }

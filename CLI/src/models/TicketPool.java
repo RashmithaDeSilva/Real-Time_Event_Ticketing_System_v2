@@ -42,6 +42,7 @@ public class TicketPool {
                 configFile.getSystemConfigs().addTickets(count);
                 configFile.getSalesLogs().add(new SalesLog("Vendor add " + count + " ticket into ticket pool", now.format(formatter)));
                 mapper.writerWithDefaultPrettyPrinter().writeValue(file, configFile);
+                System.out.println("[" + now.format(formatter) + "] " + "Vendor add " + count + " ticket into ticket pool");
                 totalTickets += count;
 
             } catch (IOException e) {
@@ -66,6 +67,7 @@ public class TicketPool {
                 configFile.getSystemConfigs().removeTickets(1);
                 configFile.getSalesLogs().add(new SalesLog("Customer bought ticket from ticket pool", now.format(formatter)));
                 mapper.writerWithDefaultPrettyPrinter().writeValue(file, configFile);
+                System.out.println("[" + now.format(formatter) + "] " + "Customer bought ticket from ticket pool");
                 totalTickets -= 1;
 
             } catch (IOException e) {
