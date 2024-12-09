@@ -1,12 +1,9 @@
-import com.fasterxml.jackson.core.exc.StreamWriteException;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import enums.SystemConfigTypes;
 import models.Customer;
 import models.TicketPool;
 import models.Vendor;
 import models.fileOps.Config;
-import models.fileOps.SalesLog;
 import util.GetInput;
 
 import java.io.File;
@@ -20,8 +17,6 @@ public class Main {
         int ticketReleaseRate;
         int customerRetrievalRate;
         int maxTicketCapacity;
-        int systemStatus;
-        int cliStatus;
 
         try {
             // Read JSON file
