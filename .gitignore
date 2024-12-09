@@ -1,0 +1,94 @@
+### IntelliJ IDEA ###
+CLI/out/
+CLI/!**/src/main/**/out/
+CLI/!**/src/test/**/out/
+
+### Eclipse ###
+CLI/.apt_generated
+CLI/.classpath
+CLI/.factorypath
+CLI/.project
+CLI/.settings
+CLI/.springBeans
+CLI/.sts4-cache
+CLI/bin/
+CLI/!**/src/main/**/bin/
+CLI/!**/src/test/**/bin/
+
+### NetBeans ###
+CLI//nbproject/private/
+CLI//nbbuild/
+CLI//dist/
+CLI//nbdist/
+CLI//.nb-gradle/
+
+### VS Code ###
+CLI/.vscode/
+
+### Mac OS ###
+CLI/.DS_Store
+
+
+# ===========================
+
+API/HELP.md
+API/target/
+API/!.mvn/wrapper/maven-wrapper.jar
+API/!**/src/main/**/target/
+API/!**/src/test/**/target/
+
+### STS ###
+API/.apt_generated
+API/.classpath
+API/.factorypath
+API/.project
+API/.settings
+API/.springBeans
+API/.sts4-cache
+
+### IntelliJ IDEA ###
+API/.idea
+API/*.iws
+API/*.iml
+API/*.ipr
+
+### NetBeans ###
+API//nbproject/private/
+API//nbbuild/
+API//dist/
+API//nbdist/
+API//.nb-gradle/
+API/build/
+API/!**/src/main/**/build/
+API/!**/src/test/**/build/
+
+### VS Code ###
+API/.vscode/
+
+
+# ====================
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+Frontend/node_modules
+Frontend/.pnp
+Frontend/.pnp.js
+
+# testing
+Frontend/coverage
+
+# production
+Frontend/build
+
+# misc
+Frontend/.DS_Store
+Frontend/.env.local
+Frontend/.env.development.local
+Frontend/.env.test.local
+Frontend/.env.production.local
+
+Frontend/npm-debug.log*
+Frontend/yarn-debug.log*
+Frontend/yarn-error.log*
+
