@@ -21,23 +21,28 @@ public class SystemConfigsController {
     }
 
     // Endpoint to fetch the current system_configs
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/")
     public Map<String, Object> getSystemConfigs() throws Exception {
         Map<String, Object> data = objectMapper.readValue(file, Map.class);
         return (Map<String, Object>) data.get("system_configs");
     }
 
-    // Broadcast system_configs updates via WebSocket
-    @Scheduled(fixedRate = 1000) // Send updates every 1 seconds
+    @Scheduled(fixedRate = 5000) // Send updates every 5 seconds
     public void broadcastSystemConfigs() throws Exception {
         Map<String, Object> data = objectMapper.readValue(file, Map.class);
         Map<String, Object> systemConfigs = (Map<String, Object>) data.get("system_configs");
 
         if (systemConfigs != null) {
+            System.out.println("Broadcasting systemConfigs: " + systemConfigs); // Log the data being broadcast
             messagingTemplate.convertAndSend("/topic/systemConfigs", systemConfigs);
+        } else {
+            System.out.println("No systemConfigs found to broadcast.");
         }
     }
 
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PatchMapping("/update")
     public void updateSystemConfigs(@RequestBody Map<String, Object> updates) throws Exception {
         // Read the existing JSON file

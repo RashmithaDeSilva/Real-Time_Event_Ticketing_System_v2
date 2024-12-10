@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,15 +31,20 @@ public class SalesLogController {
     public List<Map<String, String>> getSalesLogs(@RequestParam int page, @RequestParam int size) throws Exception {
         Map<String, Object> data = objectMapper.readValue(file, Map.class);
         List<Map<String, String>> salesLogs = (List<Map<String, String>>) data.get("sales_logs");
+        List<Map<String, String>> salesLogsDis = new ArrayList<>();
 
-        int start = Math.min(page * size, salesLogs.size());
-        int end = Math.min(start + size, salesLogs.size());
+        for (int i = salesLogs.size() - 1; i >= 0; i--) {
+            salesLogsDis.add(salesLogs.get(i));
+        }
 
-        return salesLogs.subList(start, end);
+        int start = Math.min(page * size, salesLogsDis.size());
+        int end = Math.min(start + size, salesLogsDis.size());
+
+        return salesLogsDis.subList(start, end);
     }
 
     // Broadcast sales_logs via WebSocket
-    @Scheduled(fixedRate = 1000) // Send updates every 1 seconds
+    @Scheduled(fixedRate = 5000) // Send updates every 1 seconds
     public void broadcastSalesLogs() throws Exception {
         Map<String, Object> data = objectMapper.readValue(file, Map.class);
         List<Map<String, String>> salesLogs = (List<Map<String, String>>) data.get("sales_logs");
